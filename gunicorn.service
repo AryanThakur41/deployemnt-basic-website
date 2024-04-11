@@ -1,0 +1,17 @@
+[Unit]
+Description=gunicorn daemon
+After=network.target
+
+[Service]
+User=root
+Group=www-data
+WorkingDirectory=/var/lib/jenkins/workspace/django/app
+ExecStart=/home/thakur/django_ci_cd/env/bin/gunicorn \
+          --error-logfile /var/lib/jenkins/workspace/django/error.log \
+          --workers 3 \
+          --bind unix:run/gunicorn.sock \
+          --capture-output --log-level debug \
+          app.wsgi:application
+
+[Install]
+WantedBy=multi-user.target

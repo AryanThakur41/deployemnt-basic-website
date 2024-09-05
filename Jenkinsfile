@@ -8,7 +8,7 @@ pipeline {
         }
         stage('Package Application') {
             steps {
-                sh 'zip -r application.zip *'
+                sh 'index.html'
             }
         }
         stage('Deploy to AWS CodeDeploy') {
